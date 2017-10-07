@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { ListComponent } from './list/list.component';
 import { ListItemComponent } from './list/list-item/list-item.component';
 import { ListService } from './list.service';
+import { VirtualScrollModule } from 'angular2-virtual-scroll';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,8 @@ import { ListService } from './list.service';
     ListItemComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    VirtualScrollModule
   ],
   providers: [ListService],
   bootstrap: [AppComponent]

@@ -10,8 +10,9 @@ export class ListService {
 
   constructor() { }
 
-  public getListItems(startIndex: number, take: number): Observable<ListItem> {
-    return Observable.of(MockData.slice(startIndex, startIndex+take)).delay(1000);
+  public getItems(skip: number, take: number): Observable<Array<ListItem>> {
+    console.log(`ListService getItems index=${skip} take=${take}`)
+    return Observable.of(MockData.slice(skip, skip+take)).delay(0);
   }
 
 }
