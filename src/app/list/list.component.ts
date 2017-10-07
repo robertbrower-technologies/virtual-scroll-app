@@ -11,42 +11,33 @@ import { VirtualScrollComponent, ChangeEvent } from 'angular2-virtual-scroll';
 })
 export class ListComponent implements OnChanges {
   
+  _items: ListItem[];
+  
   @Input()
-  items: ListItem[];
+  set items(value: ListItem[]) {
+    this._items = value;
+  }
+
+  get items(): ListItem[] {
+    return this._items;
+  }
+
   scrollItems: ListItem[];
+
   indices: any;
 
-  filteredList: ListItem[];
+  public id: number;
 
   @ViewChild(VirtualScrollComponent)
   private virtualScroll: VirtualScrollComponent;
-
-  reduceListToEmpty() {
-    this.filteredList = [];
-  }
-
-  reduceList() {
-    this.filteredList = (this.items || []).slice(0, 100);
-  }
-
-  sortByName() {
-    this.filteredList = [].concat(this.filteredList || []).sort((a, b) => -(a.name < b.name) || +(a.name !== b.name));
-  }
-
-  sortByIndex() {
-    this.filteredList = [].concat(this.filteredList || []).sort((a, b) => -(a.index < b.index) || +(a.index !== b.index));
-  }
-
-  setToFullList() {
-    this.filteredList = (this.items || []).slice();
-  }
-
+  
   scrollTo() {
-    this.virtualScroll.scrollInto(this.items[50]);
+    let index = this.items.findIndex(item => item.id === this.id);
+    this.virtualScroll.scrollInto(this.items[index]);
   }
 
   ngOnChanges() {
-    this.setToFullList();
+    
   }
 
 }

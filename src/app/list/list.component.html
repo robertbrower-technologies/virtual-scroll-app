@@ -1,17 +1,13 @@
-<button (click)="sortByName()">Sort By Name</button>
-<button (click)="sortByIndex()">Sort By Index</button>
-<button (click)="reduceListToEmpty()">Reduce to 0 Items</button>
-<button (click)="reduceList()">Reduce to 100 Items</button>
-<button (click)="setToFullList()">Revert to 1000 Items</button>
-<button (click)="scrollTo()">Scroll to 50</button>
+<input type="number" [(ngModel)]="id" />
+<button (click)="scrollTo()">Scroll to {{id}}</button>
 <div class="status">
     Showing <span class="badge">{{indices?.start + 1}}</span>
     - <span class="badge">{{indices?.end}}</span>
-    of <span class="badge">{{filteredList?.length}}</span>
+    of <span class="badge">{{items?.length}}</span>
   <span>({{scrollItems?.length}} nodes)</span>
   </div>
 <virtual-scroll
-  [items]="filteredList"
+  [items]="items"
   (update)="scrollItems = $event"
   (change)="indices = $event">
   <list-item *ngFor="let item of scrollItems" [item]="item"> </list-item>
